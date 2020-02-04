@@ -13,9 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkCallTrial = APINetworkCallManager()
-        networkCallTrial.getWeatherApi()
-        // Do any additional setup after loading the view.
+        ResponseBuilder.getConfigurationData()
     }
 
 

@@ -10,7 +10,9 @@ import Foundation
 
 let endpoint = "http://api.themoviedb.org"
 let nowPlayinDataEndPoint = "/3/movie/now_playing"
+let imageConfigDataEndPoint = "/3/configuration"
 let kApiKey = "34d62313879ca695c674099ea13df217"
 let defaultPlaceName = "IN"
 let kDefaultLanguage = "en-US"
-let kImageUrl = "http://openweathermap.org/img/w/"
+
+//https://image.tmdb.org/t/p/w500//y95lQLnuNKdPAzw9F9Ab8kJ80c3.jpg

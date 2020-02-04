@@ -8,38 +8,47 @@
 
 import UIKit
 
+enum NetworkCallType:Int {
+    case nowPlaying
+    case configuration
+}
+
 class APINetworkCallManager: NSObject {
 
-    func getNowPlayingApi(){
-        var urlComponents:URLComponents = URLComponents(string: endpoint)!
-        urlComponents.path = nowPlayinDataEndPoint
-
-        urlComponents.queryItems = [
-          URLQueryItem(name: "api_key", value: kApiKey),
-          URLQueryItem(name: "language", value: kDefaultLanguage),
-          URLQueryItem(name: "page", value: "1"),
-          URLQueryItem(name: "region", value: defaultPlaceName)
-        ]
-        let request = URLRequest(url: (urlComponents.url)!)
+    func getApiResponse(for callType:NetworkCallType, completion: @escaping (Data?, Error?) -> Void){
+        let request = setRequestData(for: callType)
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
         guard let data = data,
             let response = response as? HTTPURLResponse,
             (200 ..< 300) ~= response.statusCode,
-            error == nil else {                           
+            error == nil else {
+                completion(nil, error)
                 return
         }
-        let decoder = JSONDecoder()
-
-        if let responseObject = (try? JSONSerialization.jsonObject(with: data)),
-            let jsonData = try? JSONSerialization.data(withJSONObject:responseObject),
-                let movieResponseData = try? decoder.decode(NowPlayingModal.self, from: jsonData){
-            
-//            print(movieResponseData)
-            }
-        
+            completion(data, error)
         
     }
         task.resume()
+    }
+    
+    func setRequestData(for callType:NetworkCallType) -> URLRequest{
+        let urlComponents:URLComponents = URLComponents(string: endpoint)!
+        
+        if callType == .nowPlaying{
+        let request = RequestBuilder.setNowPlayingRequest(with: urlComponents)
+            return request
+        }
+            
+        else {
+        let request = RequestBuilder.setConfigurationRequest(with: urlComponents)
+            return request
+        }
+        
+    }
+    
+    func setResponseData(for callType:NetworkCallType){
+        
     }
     
 }

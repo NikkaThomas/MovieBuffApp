@@ -19,6 +19,9 @@
 		C77413E723E8523700E3B0FD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77413E623E8523700E3B0FD /* Utils.swift */; };
 		C77413EA23E926D900E3B0FD /* Modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77413E923E926D900E3B0FD /* Modals.swift */; };
 		C77413ED23E92CCB00E3B0FD /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77413EC23E92CCB00E3B0FD /* NavigationManager.swift */; };
+		C77413EF23E956F800E3B0FD /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77413EE23E956F800E3B0FD /* RequestBuilder.swift */; };
+		C77413F223E95D8200E3B0FD /* SharedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77413F123E95D8200E3B0FD /* SharedManager.swift */; };
+		C77413F423E961EE00E3B0FD /* ResponseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77413F323E961EE00E3B0FD /* ResponseBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		C77413E623E8523700E3B0FD /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C77413E923E926D900E3B0FD /* Modals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modals.swift; sourceTree = "<group>"; };
 		C77413EC23E92CCB00E3B0FD /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		C77413EE23E956F800E3B0FD /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		C77413F123E95D8200E3B0FD /* SharedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedManager.swift; sourceTree = "<group>"; };
+		C77413F323E961EE00E3B0FD /* ResponseBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,7 @@
 		C77413C823E84D2A00E3B0FD /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				C77413F023E95D6C00E3B0FD /* Shared */,
 				C77413EB23E92CAA00E3B0FD /* Navigation */,
 				C77413E823E926B100E3B0FD /* Modals */,
 				C77413E323E8520400E3B0FD /* Helpers */,
@@ -88,6 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				C77413E123E8514500E3B0FD /* APINetworkCallManager.swift */,
+				C77413EE23E956F800E3B0FD /* RequestBuilder.swift */,
+				C77413F323E961EE00E3B0FD /* ResponseBuilder.swift */,
 			);
 			path = NetworkCall;
 			sourceTree = "<group>";
@@ -115,6 +124,14 @@
 				C77413EC23E92CCB00E3B0FD /* NavigationManager.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		C77413F023E95D6C00E3B0FD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C77413F123E95D8200E3B0FD /* SharedManager.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,14 +205,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C77413F223E95D8200E3B0FD /* SharedManager.swift in Sources */,
 				C77413CE23E84D2A00E3B0FD /* ViewController.swift in Sources */,
 				C77413CA23E84D2A00E3B0FD /* AppDelegate.swift in Sources */,
 				C77413ED23E92CCB00E3B0FD /* NavigationManager.swift in Sources */,
 				C77413D423E84D2A00E3B0FD /* MovieApp.xcdatamodeld in Sources */,
 				C77413E723E8523700E3B0FD /* Utils.swift in Sources */,
+				C77413EF23E956F800E3B0FD /* RequestBuilder.swift in Sources */,
 				C77413E223E8514500E3B0FD /* APINetworkCallManager.swift in Sources */,
 				C77413CC23E84D2A00E3B0FD /* SceneDelegate.swift in Sources */,
 				C77413E523E8521C00E3B0FD /* Constants.swift in Sources */,
+				C77413F423E961EE00E3B0FD /* ResponseBuilder.swift in Sources */,
 				C77413EA23E926D900E3B0FD /* Modals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

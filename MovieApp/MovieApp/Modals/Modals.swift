@@ -39,3 +39,17 @@ struct NowPlayingModal: Codable{
     var total_results: Int?
     var total_pages: Int?
 }
+
+struct ConfigurationModal: Codable{
+    var images:ImageEndPointsModal?
+}
+
+struct ImageEndPointsModal: Codable{
+    var base_url:String?
+    var secure_base_url:String?
+    var backdrop_sizes:[String]?
+    var logo_sizes:[String]?
+    var poster_sizes:[String]?
+    var profile_sizes:[String]?
+    var still_sizes:[String]?
+}
