@@ -10,28 +10,25 @@ import UIKit
 
 class ResponseBuilder: NSObject {
 
-    func getNowPlayingMoviesData(){
+    func getNowPlayingMoviesData() -> NowPlayingModal?{
         
         let networkCallTrial = APINetworkCallManager()
+        var nowPlayingData:NowPlayingModal?
         networkCallTrial.getApiResponse(for: .nowPlaying){data, error in
-        
-        let decoder = JSONDecoder()
-
-        if let data = data,
-            let responseObject = (try? JSONSerialization.jsonObject(with: data)),
-            let jsonData = try? JSONSerialization.data(withJSONObject:responseObject),
+            
+            let decoder = JSONDecoder()
+            
+            if let data = data,
+                let responseObject = (try? JSONSerialization.jsonObject(with: data)),
+                let jsonData = try? JSONSerialization.data(withJSONObject:responseObject),
                 let movieResponseData = try? decoder.decode(NowPlayingModal.self, from: jsonData){
-            
-            //do something here
-            
-            
+                nowPlayingData = movieResponseData
             }
-        
         }
-    
+        return nowPlayingData
     }
     
-    func getConfigurationData(){
+    func saveConfigurationData(onCompletion: @escaping (Bool) -> Void){
         let networkCallTrial = APINetworkCallManager()
         networkCallTrial.getApiResponse(for: .configuration){data, error in
     
@@ -41,8 +38,15 @@ class ResponseBuilder: NSObject {
             let jsonData = try? JSONSerialization.data(withJSONObject:responseObject),
                 let configurationResponseData = try? decoder.decode(ConfigurationModal.self, from: jsonData){
             SharedManager.shared.saveEndPoints(with: configurationResponseData)
+            DispatchQueue.main.async(execute: {() -> Void in
+            onCompletion(true)
+            })
             }
-            
+        else{
+            DispatchQueue.main.async(execute: {() -> Void in
+            onCompletion(false)
+            })
+            }
         }
     }
 }

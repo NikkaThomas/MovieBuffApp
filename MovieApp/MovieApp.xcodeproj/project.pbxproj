@@ -22,6 +22,7 @@
 		C77413EF23E956F800E3B0FD /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77413EE23E956F800E3B0FD /* RequestBuilder.swift */; };
 		C77413F223E95D8200E3B0FD /* SharedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77413F123E95D8200E3B0FD /* SharedManager.swift */; };
 		C77413F423E961EE00E3B0FD /* ResponseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77413F323E961EE00E3B0FD /* ResponseBuilder.swift */; };
+		C774140523E9A32300E3B0FD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C774140423E9A32300E3B0FD /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		C77413EE23E956F800E3B0FD /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		C77413F123E95D8200E3B0FD /* SharedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedManager.swift; sourceTree = "<group>"; };
 		C77413F323E961EE00E3B0FD /* ResponseBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBuilder.swift; sourceTree = "<group>"; };
+		C774140423E9A32300E3B0FD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		C77413C823E84D2A00E3B0FD /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				C774140323E9A2C600E3B0FD /* ViewController */,
 				C77413F023E95D6C00E3B0FD /* Shared */,
 				C77413EB23E92CAA00E3B0FD /* Navigation */,
 				C77413E823E926B100E3B0FD /* Modals */,
@@ -132,6 +135,14 @@
 				C77413F123E95D8200E3B0FD /* SharedManager.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		C774140323E9A2C600E3B0FD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C774140423E9A32300E3B0FD /* SplashViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +222,7 @@
 				C77413ED23E92CCB00E3B0FD /* NavigationManager.swift in Sources */,
 				C77413D423E84D2A00E3B0FD /* MovieApp.xcdatamodeld in Sources */,
 				C77413E723E8523700E3B0FD /* Utils.swift in Sources */,
+				C774140523E9A32300E3B0FD /* SplashViewController.swift in Sources */,
 				C77413EF23E956F800E3B0FD /* RequestBuilder.swift in Sources */,
 				C77413E223E8514500E3B0FD /* APINetworkCallManager.swift in Sources */,
 				C77413CC23E84D2A00E3B0FD /* SceneDelegate.swift in Sources */,
