@@ -12,5 +12,7 @@ class NavigationManager: NSObject {
     //from splash to main page
     
     //from main to detail page
+    
+   
 
 }

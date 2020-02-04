@@ -14,6 +14,8 @@ enum NetworkCallType:Int {
 }
 
 class APINetworkCallManager: NSObject {
+    
+    let requestBuilder:RequestBuilder = RequestBuilder()
 
     func getApiResponse(for callType:NetworkCallType, completion: @escaping (Data?, Error?) -> Void){
         let request = setRequestData(for: callType)
@@ -36,12 +38,12 @@ class APINetworkCallManager: NSObject {
         let urlComponents:URLComponents = URLComponents(string: endpoint)!
         
         if callType == .nowPlaying{
-        let request = RequestBuilder.setNowPlayingRequest(with: urlComponents)
+        let request = requestBuilder.setNowPlayingRequest(with: urlComponents)
             return request
         }
             
         else {
-        let request = RequestBuilder.setConfigurationRequest(with: urlComponents)
+        let request = requestBuilder.setConfigurationRequest(with: urlComponents)
             return request
         }
         

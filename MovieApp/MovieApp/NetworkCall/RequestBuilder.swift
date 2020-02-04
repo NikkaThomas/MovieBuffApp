@@ -9,7 +9,7 @@
 import UIKit
 
 class RequestBuilder: NSObject {
-    class func setNowPlayingRequest(with urlComponents:URLComponents) ->URLRequest{
+    func setNowPlayingRequest(with urlComponents:URLComponents) ->URLRequest{
         var urlComponent:URLComponents = urlComponents
        urlComponent.path = nowPlayinDataEndPoint
 
@@ -23,7 +23,7 @@ class RequestBuilder: NSObject {
         return request
     }
     
-    class func setConfigurationRequest(with urlComponents:URLComponents) ->URLRequest{
+    func setConfigurationRequest(with urlComponents:URLComponents) ->URLRequest{
         
         var urlComponent:URLComponents = urlComponents
         urlComponent.path = imageConfigDataEndPoint

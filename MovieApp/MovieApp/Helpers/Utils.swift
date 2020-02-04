@@ -10,4 +10,16 @@ import UIKit
 
 class Utils: NSObject {
 
+    class func getSplashAnimationImageList() -> [UIImage]{
+        var imagesList : [UIImage] = []
+                          
+          for index in 1...11 {
+             let imageName = "splash" + String(index)
+              let image = UIImage.init(named: imageName)!
+              imagesList.append(image)
+          }
+        return imagesList
+    }
+    
+    
 }

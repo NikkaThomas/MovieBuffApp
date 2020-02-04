@@ -10,7 +10,7 @@ import UIKit
 
 class ResponseBuilder: NSObject {
 
-    class func getNowPlayingMoviesData(){
+    func getNowPlayingMoviesData(){
         
         let networkCallTrial = APINetworkCallManager()
         networkCallTrial.getApiResponse(for: .nowPlaying){data, error in
@@ -31,7 +31,7 @@ class ResponseBuilder: NSObject {
     
     }
     
-    class func getConfigurationData(){
+    func getConfigurationData(){
         let networkCallTrial = APINetworkCallManager()
         networkCallTrial.getApiResponse(for: .configuration){data, error in
     
