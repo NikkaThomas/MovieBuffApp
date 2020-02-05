@@ -10,6 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var sortByButton: UIButton!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     var movieList: NowPlayingModal?
     let homeCollectionViewDelegate:HomeCollectionDelegate = HomeCollectionDelegate()
@@ -41,6 +42,22 @@ class HomeViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         homeCollectionViewDataSource.movieList = movieList
         homeCollectionViewDelegate.movieList = movieList
+    }
+    
+    
+    @IBAction func sortByButtonPressed(_ sender: Any) {
+        
+        let sortList:[String] = ["Most popular", "Best Rating"]
+        let alertController = UIAlertController(title: nil, message: "Sort By", preferredStyle: .actionSheet)
+        for sortValue in sortList{
+            let sortAction = UIAlertAction(title: sortValue, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+                print(sortValue)
+            })
+            alertController.addAction(sortAction)
+        }
+
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
 }

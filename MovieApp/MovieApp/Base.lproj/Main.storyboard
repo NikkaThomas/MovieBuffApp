@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kn6-bW-vnk">
-                                <rect key="frame" x="0.0" y="64" width="414" height="778"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="758"/>
                                 <color key="backgroundColor" red="1" green="0.89411764709999997" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qXi-BI-aGB">
                                     <size key="itemSize" width="50" height="50"/>
@@ -75,19 +75,35 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iah-0R-dlE">
+                                <rect key="frame" x="207" y="54" width="197" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="dR2-xD-De9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Sort By"/>
+                                <connections>
+                                    <action selector="sortByButtonPressed:" destination="3pa-hz-E3p" eventType="touchUpInside" id="qhR-lZ-ljL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.89411764705882346" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="kn6-bW-vnk" firstAttribute="centerX" secondItem="lDN-kS-OIu" secondAttribute="centerX" id="7M4-mx-lIw"/>
+                            <constraint firstItem="1dq-v3-z4P" firstAttribute="trailing" secondItem="iah-0R-dlE" secondAttribute="trailing" constant="10" id="OXO-cO-BDU"/>
                             <constraint firstItem="kn6-bW-vnk" firstAttribute="leading" secondItem="1dq-v3-z4P" secondAttribute="leading" id="OxX-Lb-5uA"/>
+                            <constraint firstItem="kn6-bW-vnk" firstAttribute="top" secondItem="iah-0R-dlE" secondAttribute="bottom" constant="5" id="Vc6-4e-YdT"/>
                             <constraint firstItem="1dq-v3-z4P" firstAttribute="bottom" secondItem="kn6-bW-vnk" secondAttribute="bottom" constant="20" id="WAE-MQ-Qfk"/>
-                            <constraint firstItem="kn6-bW-vnk" firstAttribute="top" secondItem="1dq-v3-z4P" secondAttribute="top" constant="20" id="fzZ-lM-yhX"/>
+                            <constraint firstItem="kn6-bW-vnk" firstAttribute="top" secondItem="1dq-v3-z4P" secondAttribute="top" constant="40" id="fzZ-lM-yhX"/>
+                            <constraint firstItem="iah-0R-dlE" firstAttribute="top" secondItem="1dq-v3-z4P" secondAttribute="top" constant="10" id="hb7-hD-CKr"/>
+                            <constraint firstItem="iah-0R-dlE" firstAttribute="leading" secondItem="kn6-bW-vnk" secondAttribute="centerX" id="se7-Xf-hvD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1dq-v3-z4P"/>
                     </view>
                     <navigationItem key="navigationItem" id="LWk-TW-54u"/>
                     <connections>
                         <outlet property="moviesCollectionView" destination="kn6-bW-vnk" id="9xV-mr-Mb0"/>
+                        <outlet property="sortByButton" destination="iah-0R-dlE" id="H2N-HH-xkx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLc-Wb-EbB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
