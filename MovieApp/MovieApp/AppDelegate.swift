@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         navController = UINavigationController()
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as! SplashViewController
+        let viewController = NavigationManager.setViewController(for: .SplashView)
         self.navController!.pushViewController(viewController, animated: false)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.rootViewController = navController

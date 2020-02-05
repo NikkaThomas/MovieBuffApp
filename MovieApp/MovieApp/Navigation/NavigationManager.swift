@@ -9,9 +9,24 @@
 import UIKit
 
 class NavigationManager: NSObject {
-    //from splash to main page
     
-    //from main to detail page
+    class func setViewController(for page:PageType) -> UIViewController{
+        var viewController:UIViewController = UIViewController()
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        
+        switch page {
+        case .SplashView:
+            viewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as! SplashViewController
+            
+        case .HomeView:
+            viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            
+        case .DetailView:
+            viewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+            
+        }
+        return viewController
+    }
     
    
 

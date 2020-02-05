@@ -30,7 +30,13 @@ class Utils: NSObject {
     
     class func getDetailPosterImageURL(from path:String) -> String?{
         let baseUrl = SharedManager.shared.getBaseUrl() ?? ""
-        let posterSize = SharedManager.shared.getPosterImageSizes()?[1] ?? ""
+        var posterSize = ""
+        if Utils.isIPad(){
+            posterSize = SharedManager.shared.getPosterImageSizes()?[2] ?? ""
+        }else{
+            posterSize = SharedManager.shared.getPosterImageSizes()?[1] ?? ""
+        }
+        
         let fullPath: String = baseUrl + "/" + posterSize + path
         return fullPath
     }
@@ -45,5 +51,17 @@ class Utils: NSObject {
         return sortedList
     }
     
+    class func isIPad() -> Bool{
+    switch UIDevice.current.userInterfaceIdiom {
+    case .phone:
+        return false
+    case .pad:
+        return true
+    case .unspecified:
+        return false
+    default:
+        return false
+    }
+    }
     
 }

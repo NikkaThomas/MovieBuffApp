@@ -32,7 +32,6 @@ class SplashViewController: UIViewController {
                     wself?.loadingCommentLabel.text = "Loading...."
                     wself?.responseBuilder.getNowPlayingMoviesData(){(movieList, status) in
                         if let nowPlayingList:NowPlayingModal = movieList, status{
-                            //also pass data to next view
                             wself?.setNavigationController(with: nowPlayingList)
                         }
                     }
@@ -43,10 +42,7 @@ class SplashViewController: UIViewController {
     }
     
     func setNavigationController(with movieList:NowPlayingModal){
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-        let homeViewController:HomeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let homeViewController:HomeViewController = NavigationManager.setViewController(for: .HomeView) as! HomeViewController
         homeViewController.movieList = movieList
         self.navigationController?.pushViewController(homeViewController, animated: false)
         

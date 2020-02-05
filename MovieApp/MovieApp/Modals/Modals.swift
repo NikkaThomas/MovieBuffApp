@@ -8,6 +8,8 @@
 
 import Foundation
 
+//MARK: Struct
+
 struct Results: Codable{
     var popularity: Float?
     var title:String?
@@ -54,7 +56,15 @@ struct ImageEndPointsModal: Codable{
     var still_sizes:[String]?
 }
 
+//MARK: Enums
+
 enum SortOptions: Int{
     case mostPopular
     case mostRating
+}
+
+enum PageType: Int{
+    case SplashView
+    case HomeView
+    case DetailView
 }

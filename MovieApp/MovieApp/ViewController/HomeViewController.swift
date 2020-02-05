@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     let homeCollectionViewDelegate:HomeCollectionDelegate = HomeCollectionDelegate()
     let homeCollectionViewDataSource:HomeCollectionDataSource = HomeCollectionDataSource()
     let responseBuilder: ResponseBuilder = ResponseBuilder()
+    let kHomeCustomCell:String = "HomeCollectionViewCell"
     
     
     override func viewDidLoad() {
@@ -42,8 +43,8 @@ class HomeViewController: UIViewController {
     }
     
     func registerCells(){
-        let cellNib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
-        moviesCollectionView.register(cellNib, forCellWithReuseIdentifier: "HomeCollectionViewCell")
+        let cellNib = UINib(nibName: kHomeCustomCell, bundle: nil)
+        moviesCollectionView.register(cellNib, forCellWithReuseIdentifier: kHomeCustomCell)
     }
     
     func updateUI(){
@@ -85,15 +86,14 @@ extension HomeViewController: cellDidSelectDelegate{
     
     func movieClicked(with data:  Results?){
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailViewController:DetailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        let detailViewController:DetailsViewController = NavigationManager.setViewController(for: .DetailView) as! DetailsViewController
          detailViewController.movieDetail = data
         self.navigationController?.pushViewController(detailViewController, animated: false)
     
     }
     
     func pagination(){
-        if !paginationBusy && movieList?.total_pages ?? 0 >= movieList?.results?.count ?? 0{
+        if !paginationBusy && movieList?.total_pages ?? 0 >= currentPage{
             paginationBusy = true
         self.responseBuilder.getNowPlayingMoviesData(at: currentPage + 1){(movieList, status) in
             weak var wself = self
@@ -101,7 +101,9 @@ extension HomeViewController: cellDidSelectDelegate{
                 for newMovies in resultArray{
                     wself?.movieList?.results?.append(newMovies)
                 }
+                wself?.updateUI()
                 wself?.moviesCollectionView.reloadData()
+                wself?.currentPage = (wself?.currentPage ?? 1) + 1
                 wself?.paginationBusy = false
             }
         }

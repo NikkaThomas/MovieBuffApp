@@ -12,7 +12,6 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var detailPosterImageView: UIImageView!
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailRatingLabel: UILabel!
-    
     @IBOutlet weak var detailDescTextField: UITextView!
     
     var movieDetail: Results?
@@ -30,8 +29,9 @@ class DetailsViewController: UIViewController {
     
     func updateUI(){
         if let movieDetails:Results = movieDetail{
+            detailPosterImageView.layer.cornerRadius = 10.0
             detailTitleLabel.text = movieDetails.title
-            detailRatingLabel.text = String(format: "%d", movieDetails.vote_average ?? 0)
+            detailRatingLabel.text = String(format: "Rating : %d / 10", Int(movieDetails.popularity ?? 0.0))
             detailDescTextField.text = movieDetails.overview
             detailPosterImageView.sd_setImage(with: URL(string: Utils.getDetailPosterImageURL(from: movieDetails.poster_path ?? "") ?? ""), placeholderImage: UIImage(named: "splash1"))
         }

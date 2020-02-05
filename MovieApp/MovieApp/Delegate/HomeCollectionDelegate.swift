@@ -19,6 +19,7 @@ class HomeCollectionDelegate: NSObject, UICollectionViewDelegate, UICollectionVi
     
     var interLineSpace:CGFloat = 10.0
     var interItemSpace:CGFloat = 10.0
+    var cellEdgeInset: UIEdgeInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if let movieDetailList: NowPlayingModal = movieList{
@@ -27,7 +28,8 @@ class HomeCollectionDelegate: NSObject, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 92.0 + 5 + 5)
+        let cellWidth:CGFloat = collectionView.frame.width - (2*interItemSpace) - cellEdgeInset.left - cellEdgeInset.right
+        return CGSize(width: cellWidth, height: 92.0 + 5 + 5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat{
@@ -39,7 +41,6 @@ class HomeCollectionDelegate: NSObject, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
-        let cellEdgeInset:UIEdgeInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         return cellEdgeInset
     }
     
