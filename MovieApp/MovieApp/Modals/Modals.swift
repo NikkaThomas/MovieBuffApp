@@ -53,3 +53,8 @@ struct ImageEndPointsModal: Codable{
     var profile_sizes:[String]?
     var still_sizes:[String]?
 }
+
+enum SortOptions: Int{
+    case mostPopular
+    case mostRating
+}

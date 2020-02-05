@@ -35,5 +35,15 @@ class Utils: NSObject {
         return fullPath
     }
     
+    class func sortData(with option:SortOptions, from data:[Results]) ->[Results]?{
+        var sortedList:[Results]? = nil
+        if option == .mostPopular{
+            sortedList = data.sorted(by: { $0.popularity ?? 0.0 > $1.popularity ?? 0.0})
+        }else{
+            sortedList = data.sorted(by: { $0.vote_average ?? 0.0 > $1.vote_average ?? 0.0})
+        }
+        return sortedList
+    }
+    
     
 }

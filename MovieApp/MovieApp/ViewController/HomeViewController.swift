@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         updateUI()
         registerCells()
         setDelegates()
@@ -39,18 +40,30 @@ class HomeViewController: UIViewController {
     }
     
     func updateUI(){
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         homeCollectionViewDataSource.movieList = movieList
         homeCollectionViewDelegate.movieList = movieList
     }
     
     
     @IBAction func sortByButtonPressed(_ sender: Any) {
-        
+        guard let movieDetailList:NowPlayingModal = movieList, let resultList = movieDetailList.results else {
+            return
+        }
         let sortList:[String] = ["Most popular", "Best Rating"]
         let alertController = UIAlertController(title: nil, message: "Sort By", preferredStyle: .actionSheet)
         for sortValue in sortList{
             let sortAction = UIAlertAction(title: sortValue, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+                if sortValue == "Most popular"{
+                    self.movieList?.results = Utils.sortData(with: .mostPopular, from: resultList)
+                    self.updateUI()
+                    self.moviesCollectionView.reloadData()
+                    
+                }else{
+                    self.movieList?.results = Utils.sortData(with: .mostRating, from: resultList)
+                    self.updateUI()
+                    self.moviesCollectionView.reloadData()
+
+                }
                 print(sortValue)
             })
             alertController.addAction(sortAction)
