@@ -20,11 +20,15 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         updateUI()
         registerCells()
         setDelegates()
         
+    }
+     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+
     }
     
     func setDelegates(){
