@@ -13,7 +13,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailRatingLabel: UILabel!
     @IBOutlet weak var detailDescTextField: UITextView!
-    
+    @IBOutlet weak var releasedDateLabel: UILabel!
     var movieDetail: Results?
 
     override func viewDidLoad() {
@@ -32,6 +32,7 @@ class DetailsViewController: UIViewController {
             detailPosterImageView.layer.cornerRadius = 10.0
             detailTitleLabel.text = movieDetails.title
             detailRatingLabel.text = String(format: "Rating : %d / 10", Int(movieDetails.popularity ?? 0.0))
+            releasedDateLabel.text = movieDetails.release_date
             detailDescTextField.text = movieDetails.overview
             detailPosterImageView.sd_setImage(with: URL(string: Utils.getDetailPosterImageURL(from: movieDetails.poster_path ?? "") ?? ""), placeholderImage: UIImage(named: "splash1"))
         }
