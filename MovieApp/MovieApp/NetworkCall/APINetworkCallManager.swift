@@ -17,8 +17,8 @@ class APINetworkCallManager: NSObject {
     
     let requestBuilder:RequestBuilder = RequestBuilder()
 
-    func getApiResponse(for callType:NetworkCallType, completion: @escaping (Data?, Error?) -> Void){
-        let request = setRequestData(for: callType)
+    func getApiResponse(for callType:NetworkCallType, with pageNumber: Int? = nil, completion: @escaping (Data?, Error?) -> Void){
+        let request = setRequestData(for: callType, with: pageNumber)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
         guard let data = data,
@@ -34,11 +34,11 @@ class APINetworkCallManager: NSObject {
         task.resume()
     }
     
-    func setRequestData(for callType:NetworkCallType) -> URLRequest{
+    func setRequestData(for callType:NetworkCallType, with pageNumber: Int? = nil) -> URLRequest{
         let urlComponents:URLComponents = URLComponents(string: endpoint)!
         
         if callType == .nowPlaying{
-        let request = requestBuilder.setNowPlayingRequest(with: urlComponents)
+        let request = requestBuilder.setNowPlayingRequest(with: urlComponents, and: pageNumber)
             return request
         }
             

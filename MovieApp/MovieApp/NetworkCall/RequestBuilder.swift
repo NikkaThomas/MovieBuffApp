@@ -9,14 +9,14 @@
 import UIKit
 
 class RequestBuilder: NSObject {
-    func setNowPlayingRequest(with urlComponents:URLComponents) ->URLRequest{
+    func setNowPlayingRequest(with urlComponents:URLComponents, and pageNumber:Int? = nil) ->URLRequest{
         var urlComponent:URLComponents = urlComponents
        urlComponent.path = nowPlayinDataEndPoint
-
+        let pageNumberString:String = String(format: "%d", pageNumber ?? 1)
         urlComponent.queryItems = [
           URLQueryItem(name: "api_key", value: kApiKey),
           URLQueryItem(name: "language", value: kDefaultLanguage),
-          URLQueryItem(name: "page", value: "1"),
+          URLQueryItem(name: "page", value: pageNumberString),
           URLQueryItem(name: "region", value: defaultPlaceName)
         ]
         let request = URLRequest(url: (urlComponent.url)!)

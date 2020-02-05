@@ -10,10 +10,10 @@ import UIKit
 
 class ResponseBuilder: NSObject {
 
-    func getNowPlayingMoviesData(onCompletion: @escaping (NowPlayingModal?, Bool) -> Void){
+    func getNowPlayingMoviesData(at pageNumber:Int? = nil, onCompletion: @escaping (NowPlayingModal?, Bool) -> Void){
         
         let networkCallTrial = APINetworkCallManager()
-        networkCallTrial.getApiResponse(for: .nowPlaying){data, error in
+        networkCallTrial.getApiResponse(for: .nowPlaying, with: pageNumber){data, error in
             
             let decoder = JSONDecoder()
             
