@@ -13,8 +13,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var sortByButton: UIButton!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     var movieList: NowPlayingModal?
+    var paginationBusy:Bool = false
+    var currentPage:Int = 1
     let homeCollectionViewDelegate:HomeCollectionDelegate = HomeCollectionDelegate()
     let homeCollectionViewDataSource:HomeCollectionDataSource = HomeCollectionDataSource()
+    let responseBuilder: ResponseBuilder = ResponseBuilder()
     
     
     override func viewDidLoad() {
@@ -68,7 +71,6 @@ class HomeViewController: UIViewController {
                     self.moviesCollectionView.reloadData()
 
                 }
-                print(sortValue)
             })
             alertController.addAction(sortAction)
         }
@@ -88,6 +90,23 @@ extension HomeViewController: cellDidSelectDelegate{
          detailViewController.movieDetail = data
         self.navigationController?.pushViewController(detailViewController, animated: false)
     
+    }
+    
+    func pagination(){
+        if !paginationBusy && movieList?.total_pages ?? 0 >= movieList?.results?.count ?? 0{
+            paginationBusy = true
+        self.responseBuilder.getNowPlayingMoviesData(at: currentPage + 1){(movieList, status) in
+            weak var wself = self
+            if let newMovieList:NowPlayingModal = movieList, let resultArray = newMovieList.results{
+                for newMovies in resultArray{
+                    wself?.movieList?.results?.append(newMovies)
+                }
+                wself?.moviesCollectionView.reloadData()
+                wself?.paginationBusy = false
+            }
+        }
+        }
+
     }
 
 }

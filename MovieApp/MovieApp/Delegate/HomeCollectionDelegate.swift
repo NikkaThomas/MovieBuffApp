@@ -10,9 +10,10 @@ import UIKit
 
 protocol cellDidSelectDelegate {
     func movieClicked(with data:  Results?)
+    func pagination()
 }
 
-class HomeCollectionDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class HomeCollectionDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     var movieList: NowPlayingModal?
     var cellDelegate: cellDidSelectDelegate?
     
@@ -40,6 +41,12 @@ class HomeCollectionDelegate: NSObject, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
         let cellEdgeInset:UIEdgeInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         return cellEdgeInset
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView){
+        if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height - 60 {
+            cellDelegate?.pagination()            
+        }
     }
     
 
