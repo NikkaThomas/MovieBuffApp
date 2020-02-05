@@ -10,10 +10,9 @@ import UIKit
 
 class ResponseBuilder: NSObject {
 
-    func getNowPlayingMoviesData() -> NowPlayingModal?{
+    func getNowPlayingMoviesData(onCompletion: @escaping (NowPlayingModal?, Bool) -> Void){
         
         let networkCallTrial = APINetworkCallManager()
-        var nowPlayingData:NowPlayingModal?
         networkCallTrial.getApiResponse(for: .nowPlaying){data, error in
             
             let decoder = JSONDecoder()
@@ -22,10 +21,15 @@ class ResponseBuilder: NSObject {
                 let responseObject = (try? JSONSerialization.jsonObject(with: data)),
                 let jsonData = try? JSONSerialization.data(withJSONObject:responseObject),
                 let movieResponseData = try? decoder.decode(NowPlayingModal.self, from: jsonData){
-                nowPlayingData = movieResponseData
+                DispatchQueue.main.async(execute: {() -> Void in
+                onCompletion(movieResponseData, true)
+                })
+            }else{
+                DispatchQueue.main.async(execute: {() -> Void in
+                onCompletion(nil,false)
+                })
             }
         }
-        return nowPlayingData
     }
     
     func saveConfigurationData(onCompletion: @escaping (Bool) -> Void){

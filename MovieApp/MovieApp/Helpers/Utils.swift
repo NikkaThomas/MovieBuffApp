@@ -21,5 +21,19 @@ class Utils: NSObject {
         return imagesList
     }
     
+    class func getPosterImageURL(from path:String) -> String?{
+        let baseUrl = SharedManager.shared.getBaseUrl() ?? ""
+        let posterSize = SharedManager.shared.getPosterImageSizes()?[0] ?? ""
+        let fullPath: String = baseUrl + "/" + posterSize + path
+        return fullPath
+    }
+    
+    class func getDetailPosterImageURL(from path:String) -> String?{
+        let baseUrl = SharedManager.shared.getBaseUrl() ?? ""
+        let posterSize = SharedManager.shared.getPosterImageSizes()?[1] ?? ""
+        let fullPath: String = baseUrl + "/" + posterSize + path
+        return fullPath
+    }
+    
     
 }

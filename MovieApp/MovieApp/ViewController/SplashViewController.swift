@@ -18,6 +18,7 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         splashImageView.animationImages = Utils.getSplashAnimationImageList()
         splashImageView.animationDuration = 2.0
         splashImageView.startAnimating()
@@ -29,19 +30,27 @@ class SplashViewController: UIViewController {
             wself?.responseBuilder.saveConfigurationData(){(status) in
                 if status{
                     wself?.loadingCommentLabel.text = "Loading...."
+                    wself?.responseBuilder.getNowPlayingMoviesData(){(movieList, status) in
+                        if let nowPlayingList:NowPlayingModal = movieList, status{
+                            //also pass data to next view
+                            wself?.setNavigationController(with: nowPlayingList)
+                        }
+                    }
                 }else{
                     wself?.loadingCommentLabel.text = "check network connection"
                 }
             }
-            
-            if let nowPlayingMovieList:NowPlayingModal = wself?.responseBuilder.getNowPlayingMoviesData(){
-                wself?.loadingCommentLabel.text = "still Loading...."
-                //also pass data to next view
-                
-            }else{
-                wself?.loadingCommentLabel.text = "check network connection"
-            }
+    }
+    
+    func setNavigationController(with movieList:NowPlayingModal){
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
+        let homeViewController:HomeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        homeViewController.movieList = movieList
+        self.navigationController?.pushViewController(homeViewController, animated: false)
+        
+        
     }
 
 }

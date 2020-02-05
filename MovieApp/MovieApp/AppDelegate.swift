@@ -12,21 +12,32 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var navController: UINavigationController?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        navController = UINavigationController()
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as! SplashViewController
+        self.navController!.pushViewController(viewController, animated: false)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window!.rootViewController = navController
+        self.window!.makeKeyAndVisible()
+
+
+        return true
+    }
+    
+    func startApplication(with movieList:NowPlayingModal){
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let navigationController = UINavigationController.init(rootViewController: viewController)
+        self.window?.rootViewController = navigationController
 
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
-
-        self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
-        
-        
-        return true
     }
 
     // MARK: UISceneSession Lifecycle
